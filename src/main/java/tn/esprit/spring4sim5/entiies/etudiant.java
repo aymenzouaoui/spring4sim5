@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 @Table
 @AllArgsConstructor
@@ -31,12 +33,7 @@ public class etudiant implements Serializable {
     private long cin;
     private Date date;
 
-
-
-    // Supprimez ou définissez les setters comme privés pour idetudiant
-    /*private void setIdetudiant(long idetudiant) {
-
-    }
-*/
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<reservation> res;
 
 }

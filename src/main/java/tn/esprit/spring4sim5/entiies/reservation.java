@@ -7,6 +7,7 @@ import lombok.*;
 import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
@@ -22,6 +23,10 @@ public class reservation implements Serializable
             @GeneratedValue(strategy = GenerationType.IDENTITY)
             @Setter(AccessLevel.NONE)
             private Long idreservation;
+
+            @ManyToMany(mappedBy="res", cascade = CascadeType.ALL)
+            private Set<etudiant> Etudiant;
+
 
 
         }

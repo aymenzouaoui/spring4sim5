@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table
@@ -20,5 +21,10 @@ public class chambre implements Serializable {
     @Enumerated(EnumType.STRING)
     private typechambre typec;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="Chambre")
+    private Set<bloc> Bloc;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<reservation> reservations;
 
 }

@@ -25,6 +25,11 @@ public class bloc implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idbloc;
 
+    @ManyToOne
+    chambre Chambre;
+
+@ManyToOne
+    foyer Foyer;
 
 
 
