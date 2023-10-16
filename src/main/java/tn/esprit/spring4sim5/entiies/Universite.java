@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.io.Serializable;
 @Entity
 @Table
-public class universite implements Serializable {
+public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -15,7 +15,7 @@ public class universite implements Serializable {
     private String nomnivercsite;
     private String adresse;
     @OneToOne(mappedBy="Universite")
-    private foyer Foyer;
+    private tn.esprit.spring4sim5.entiies.Foyer Foyer;
 
 
 

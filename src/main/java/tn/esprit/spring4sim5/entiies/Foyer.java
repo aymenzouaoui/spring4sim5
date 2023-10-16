@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor(force = true)
 @Getter
 @Setter
-public class foyer implements Serializable {
+public class Foyer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -21,8 +21,8 @@ public class foyer implements Serializable {
     private long capacityFoyer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="Foyer")
-    private Set<bloc> Bloc;
+    private Set<tn.esprit.spring4sim5.entiies.Bloc> Bloc;
 
     @OneToOne
-    private universite Universite;
+    private tn.esprit.spring4sim5.entiies.Universite Universite;
 }

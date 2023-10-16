@@ -22,7 +22,7 @@ import java.util.Set;
 @Slf4j
 
 @ToString
-public class etudiant implements Serializable {
+public class Etudiant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -34,6 +34,6 @@ public class etudiant implements Serializable {
     private Date date;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<reservation> res;
+    private Set<Reservation> res;
 
 }

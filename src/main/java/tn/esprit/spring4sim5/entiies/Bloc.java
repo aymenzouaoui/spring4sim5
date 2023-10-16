@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Slf4j
-public class bloc implements Serializable {
+public class Bloc implements Serializable {
     private String nombloc;
     private long capacitybloc;
 
@@ -26,10 +26,10 @@ public class bloc implements Serializable {
     private Long idbloc;
 
     @ManyToOne
-    chambre Chambre;
+    tn.esprit.spring4sim5.entiies.Chambre Chambre;
 
 @ManyToOne
-    foyer Foyer;
+tn.esprit.spring4sim5.entiies.Foyer Foyer;
 
 
 
