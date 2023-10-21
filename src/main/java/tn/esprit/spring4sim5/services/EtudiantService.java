@@ -7,7 +7,6 @@ import tn.esprit.spring4sim5.repositories.EtudiantRepository;
 
 @Service
 public class EtudiantService implements IEtudiantService {
-    @Autowired
-    EtudiantRepository etudiantRepository;
+
     
 }
