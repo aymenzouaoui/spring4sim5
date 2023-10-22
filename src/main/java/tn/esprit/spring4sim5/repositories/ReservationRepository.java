@@ -1,4 +1,4 @@
 package tn.esprit.spring4sim5.repositories;
 
-public class ReservationRepository {
+public class ReservationRepository implements IReservationRepository{
 }
