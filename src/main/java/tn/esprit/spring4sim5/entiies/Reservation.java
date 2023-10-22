@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table
+
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Getter
