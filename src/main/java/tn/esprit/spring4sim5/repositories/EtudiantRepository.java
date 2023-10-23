@@ -18,12 +18,12 @@ public class EtudiantRepository implements IEtudiantRepository{
     }
 
     @Override
-    public Optional<Etudiant> findById(Integer integer) {
+    public Optional<Etudiant> findById(Long aLong) {
         return Optional.empty();
     }
 
     @Override
-    public boolean existsById(Integer integer) {
+    public boolean existsById(Long aLong) {
         return false;
     }
 
@@ -33,7 +33,7 @@ public class EtudiantRepository implements IEtudiantRepository{
     }
 
     @Override
-    public Iterable<Etudiant> findAllById(Iterable<Integer> integers) {
+    public Iterable<Etudiant> findAllById(Iterable<Long> longs) {
         return null;
     }
 
@@ -43,7 +43,7 @@ public class EtudiantRepository implements IEtudiantRepository{
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Long aLong) {
 
     }
 
@@ -53,7 +53,7 @@ public class EtudiantRepository implements IEtudiantRepository{
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Integer> integers) {
+    public void deleteAllById(Iterable<? extends Long> longs) {
 
     }
 
