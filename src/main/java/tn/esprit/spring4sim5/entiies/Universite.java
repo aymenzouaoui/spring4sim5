@@ -15,7 +15,7 @@ public class Universite implements Serializable {
     private String nomnivercsite;
     private String adresse;
     @OneToOne(mappedBy="Universite")
-    private tn.esprit.spring4sim5.entiies.Foyer Foyer;
+    private Foyer Foyer;
 
 
 

@@ -24,5 +24,5 @@ public class Foyer implements Serializable {
     private Set<tn.esprit.spring4sim5.entiies.Bloc> Bloc;
 
     @OneToOne
-    private tn.esprit.spring4sim5.entiies.Universite Universite;
+    private Universite Universite;
 }

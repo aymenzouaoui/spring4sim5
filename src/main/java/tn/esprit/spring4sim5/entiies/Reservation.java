@@ -25,7 +25,7 @@ public class Reservation implements Serializable
             private boolean estvalide;
 
             @ManyToMany(mappedBy="res", cascade = CascadeType.ALL)
-            private Set<tn.esprit.spring4sim5.entiies.Etudiant> Etudiant;
+            private Set<Etudiant> Etudiant;
 
 
 

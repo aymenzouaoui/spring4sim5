@@ -17,12 +17,13 @@ public class Chambre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long idchambre;
+
     private long numchmbre;
     @Enumerated(EnumType.STRING)
     private Typechambre typec;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="Chambre")
-    private Set<tn.esprit.spring4sim5.entiies.Bloc> Bloc;
+    private Set<Bloc> Bloc;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Reservation> reservations;
