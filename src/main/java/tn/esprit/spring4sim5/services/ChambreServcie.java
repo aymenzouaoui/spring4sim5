@@ -1,6 +1,7 @@
 package tn.esprit.spring4sim5.services;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,7 @@ import tn.esprit.spring4sim5.entiies.Chambre;
 import tn.esprit.spring4sim5.repositories.IChambreRepository;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Service
 public class ChambreServcie implements iChmabreService {
 
@@ -23,7 +24,7 @@ public class ChambreServcie implements iChmabreService {
 
     @Override
     public void supprimerChambre(Long idChambre) {
-chambreRepository.deleteById(idChambre);
+        chambreRepository.deleteById(idChambre);
     }
 
     @Override

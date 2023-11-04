@@ -33,7 +33,8 @@ public class BlocService implements iBlocService{
 
     @Override
     public List<Bloc> getAllBloc() {
-        return (List<Bloc>)blocRepository.findAll() ;
+
+      return (List<Bloc>)blocRepository.findAll() ;
     }
 
 }

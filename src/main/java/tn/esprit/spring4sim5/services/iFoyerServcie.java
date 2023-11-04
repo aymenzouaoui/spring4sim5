@@ -12,10 +12,10 @@ public interface iFoyerServcie {
     Foyer mettreAJourFoyer(Foyer foyer);
 
     // Méthode pour supprimer un foyer
-    void supprimerFoyer(int id);
+    void supprimerFoyer(Long id);
 
     // Méthode pour récupérer un foyer par son identifiant
-    Foyer getFoyerParId(int id);
+    Foyer getFoyerParId(Long id);
 
     // Méthode pour récupérer tous les foyers
     List<Foyer> getTousLesFoyers();

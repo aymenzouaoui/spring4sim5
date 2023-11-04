@@ -1,38 +1,44 @@
 package tn.esprit.spring4sim5.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring4sim5.entiies.Universite;
+import tn.esprit.spring4sim5.repositories.IUniversiteRepository;
 
 import java.util.List;
 
+import static java.util.Collections.list;
+@RequiredArgsConstructor
 @Service
 public class UniversiteServcie implements iUnversiteService{
-
     @Autowired
-    iUnversiteService unversiteService;
+    IUniversiteRepository universiteRepository;
+
+
+
     @Override
     public Universite ajouterUniversite(Universite universite) {
-        return null;
+        return universiteRepository.save(universite);
     }
 
     @Override
     public Universite mettreAJourUniversite(Universite universite) {
-        return null;
+        return universiteRepository.save(universite);
     }
 
     @Override
-    public void supprimerUniversite(int id) {
-
+    public void supprimerUniversite(Long id) {
+        universiteRepository.deleteById(id);
     }
 
     @Override
-    public Universite getUniversiteParId(int id) {
-        return null;
+    public Universite getUniversiteParId(Long id) {
+        return universiteRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Universite> getToutesLesUniversites() {
-        return null;
+        return (List<Universite>) universiteRepository.findAll();
     }
 }

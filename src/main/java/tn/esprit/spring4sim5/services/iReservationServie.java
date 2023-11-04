@@ -12,10 +12,10 @@ public interface iReservationServie {
     Reservation mettreAJourReservation(Reservation reservation);
 
     // Méthode pour annuler une réservation
-    void annulerReservation(int id);
+    void annulerReservation(long id);
 
     // Méthode pour récupérer une réservation par son identifiant
-    Reservation getReservationParId(int id);
+    Reservation getReservationParId(long id);
 
     // Méthode pour récupérer toutes les réservations
     List<Reservation> getToutesLesReservations();

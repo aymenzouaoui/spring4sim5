@@ -12,10 +12,10 @@ public interface iUnversiteService {
     Universite mettreAJourUniversite(Universite universite);
 
     // Méthode pour supprimer une université par son identifiant
-    void supprimerUniversite(int id);
+    void supprimerUniversite(Long id);
 
     // Méthode pour récupérer une université par son identifiant
-    Universite getUniversiteParId(int id);
+    Universite getUniversiteParId(Long id);
 
     // Méthode pour récupérer toutes les universités
     List<Universite> getToutesLesUniversites();

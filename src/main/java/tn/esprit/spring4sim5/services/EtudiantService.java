@@ -1,12 +1,13 @@
 package tn.esprit.spring4sim5.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring4sim5.entiies.Etudiant;
 
 import java.util.List;
 
-
+@RequiredArgsConstructor
 @Service
 public class EtudiantService implements iEtudiantService {
     @Autowired
