@@ -9,8 +9,7 @@ import tn.esprit.spring4sim5.repositories.IBlocRepository;
 @RestController
 public class BlocController {
 
-@Autowired
-    IBlocRepository blocRepository;
+
 
 
 

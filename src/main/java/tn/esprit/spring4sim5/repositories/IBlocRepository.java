@@ -10,7 +10,6 @@ import java.util.List;
 public interface IBlocRepository extends CrudRepository<Bloc,Long> {
 
 
-    List<Bloc> findBlocByCapacitAndChambreContainingOrderByIdblocFoyerAsc(long id);
 
 
 }

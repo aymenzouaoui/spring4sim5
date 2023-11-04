@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring4sim5.entiies.Etudiant;
+import tn.esprit.spring4sim5.repositories.IBlocRepository;
+import tn.esprit.spring4sim5.repositories.IEtudiantRepository;
 
 import java.util.List;
 
@@ -11,31 +13,32 @@ import java.util.List;
 @Service
 public class EtudiantService implements iEtudiantService {
     @Autowired
-    iEtudiantService etudiantService;
+    IEtudiantRepository etudiantRepository;
 
 
     @Override
     public Etudiant ajouterEtudiant(Etudiant etudiant) {
-        return null;
+       return etudiantRepository.save(etudiant);
     }
 
     @Override
     public Etudiant mettreAJourEtudiant(Etudiant etudiant) {
-        return null;
+        return etudiantRepository.save(etudiant);
     }
 
     @Override
-    public void supprimerEtudiant(int id) {
+    public void supprimerEtudiant(Long id) {
+        etudiantRepository.deleteById(id);
 
     }
 
     @Override
-    public Etudiant getEtudiantParId(int id) {
-        return null;
+    public Etudiant getEtudiantParId(Long id) {
+       return etudiantRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Etudiant> getTousLesEtudiants() {
-        return null;
+        return (List<Etudiant>)etudiantRepository.findAll();
     }
 }

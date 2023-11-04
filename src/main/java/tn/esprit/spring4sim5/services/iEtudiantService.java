@@ -12,10 +12,10 @@ public interface iEtudiantService {
     Etudiant mettreAJourEtudiant(Etudiant etudiant);
 
     // Méthode pour supprimer un étudiant par son identifiant
-    void supprimerEtudiant(int id);
+    void supprimerEtudiant(Long id);
 
     // Méthode pour récupérer un étudiant par son identifiant
-    Etudiant getEtudiantParId(int id);
+    Etudiant getEtudiantParId(Long id);
 
     // Méthode pour récupérer tous les étudiants
     List<Etudiant> getTousLesEtudiants();

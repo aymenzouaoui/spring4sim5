@@ -8,6 +8,4 @@ import tn.esprit.spring4sim5.services.FoyerService;
 @RestController
 public class FoyerController {
 
-    @Autowired
-    FoyerService foyerService;
 }

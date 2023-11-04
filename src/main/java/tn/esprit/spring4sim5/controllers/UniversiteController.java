@@ -8,8 +8,6 @@ import tn.esprit.spring4sim5.services.UniversiteServcie;
 
 @RestController
 public class UniversiteController {
-    @Autowired
-    private  UniversiteServcie universiteServcie;
 
 
 

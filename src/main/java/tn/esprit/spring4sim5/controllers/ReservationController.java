@@ -9,6 +9,5 @@ import tn.esprit.spring4sim5.services.ReservationService;
 public class ReservationController {
 
 
-    @Autowired
-    ReservationService reservationService;
+
 }

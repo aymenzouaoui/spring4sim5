@@ -9,8 +9,7 @@ import tn.esprit.spring4sim5.services.EtudiantService;
 @AllArgsConstructor
 @RestController
 public class EtudiantController {
-    @Autowired
-    EtudiantService etudiantService;
+
 
 
 
