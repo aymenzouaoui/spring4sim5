@@ -14,21 +14,18 @@ import java.io.Serializable;
 @Slf4j
 
 public class Bloc implements Serializable {
-    private String nombloc;
-
-    private long capacitybloc;
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idbloc;
 
+    private String nombloc;
+    private long capacitybloc;
     @ManyToOne
     Chambre Chambre;
 
     @ManyToOne
-    Foyer Foyer;
+    Foyer foyer;
 
 
 

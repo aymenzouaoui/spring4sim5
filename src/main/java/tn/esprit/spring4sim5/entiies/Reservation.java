@@ -24,7 +24,7 @@ public class Reservation implements Serializable
             private Date anneuniversaire;
             private boolean estvalide;
 
-            @ManyToMany(mappedBy="res", cascade = CascadeType.ALL)
+            @ManyToMany(mappedBy="reservation", cascade = CascadeType.ALL)
             private Set<Etudiant> Etudiant;
 
 

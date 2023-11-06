@@ -18,14 +18,11 @@ public class BlocService implements iBlocService{
     @Override
     public void supprimerBloc(Long idBloc) {
          blocRepository.deleteById(idBloc);
-
     }
-
     @Override
     public Bloc getBloc(Long idBloc) {
         return blocRepository.findById(idBloc).orElse(null);
     }
-
     @Override
     public Bloc modifierBloc(Bloc b) {
         return blocRepository.save(b);
@@ -36,5 +33,12 @@ public class BlocService implements iBlocService{
 
       return (List<Bloc>)blocRepository.findAll() ;
     }
+  public List<Bloc> getBlocsWithEtudiantsByReservationId(Long reservationId) {
+    return blocRepository.findByChambreReservationsId(reservationId);
+  }
 
+  public List<Bloc> getBlocsWithCapaciteInf100AndFoyerNomBeta(Long capaciteMax,String nomFoyer ) {
+
+    return blocRepository.findByNomblocLessThanAndFoyerNomFoyer(capaciteMax, nomFoyer);
+  }
 }

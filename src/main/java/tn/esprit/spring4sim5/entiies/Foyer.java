@@ -20,7 +20,7 @@ public class Foyer implements Serializable {
     private String nomFoyer;
     private long capacityFoyer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="Foyer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="foyer")
     private Set<tn.esprit.spring4sim5.entiies.Bloc> Bloc;
 
     @OneToOne

@@ -41,4 +41,10 @@ public class EtudiantService implements iEtudiantService {
     public List<Etudiant> getTousLesEtudiants() {
         return (List<Etudiant>)etudiantRepository.findAll();
     }
+
+
+    public List<Etudiant> getEtudiantsWithDoubleChambreReservation() {
+        String typeChambre = "DOUBLE";
+        return etudiantRepository.findByReservationChambreTypec(typeChambre);
+    }
 }

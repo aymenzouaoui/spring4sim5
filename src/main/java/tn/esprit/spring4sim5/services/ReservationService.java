@@ -7,6 +7,9 @@ import tn.esprit.spring4sim5.entiies.Reservation;
 import tn.esprit.spring4sim5.repositories.IReservationRepository;
 
 import java.util.List;
+
+
+
 @RequiredArgsConstructor
 @Service
 public class ReservationService implements iReservationServie{
@@ -38,5 +41,15 @@ public class ReservationService implements iReservationServie{
     public List<Reservation> getToutesLesReservations() {
 
         return (List<Reservation>) reservationRepository.findAll();
+    }
+    public List<Reservation> getReservationsWithNomMohamed(String nomEtudiant) {
+
+        return reservationRepository.findByEtudiantNomE(nomEtudiant);
+    }
+
+    public List<Reservation> getReservationsWithChambreNumeroSup50(Long numeroChambre) {
+
+
+        return reservationRepository.findByChambreNumchmbreGreaterThan(numeroChambre);
     }
 }

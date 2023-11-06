@@ -40,4 +40,7 @@ public class FoyerService implements iFoyerServcie{
     public List<Foyer> getTousLesFoyers() {
         return (List<Foyer>) foyerRepository.findAll();
     }
+
+
+
 }

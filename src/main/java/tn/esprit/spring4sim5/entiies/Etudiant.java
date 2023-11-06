@@ -34,6 +34,6 @@ public class Etudiant implements Serializable {
     private Date date;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Reservation> res;
+    private Set<Reservation> reservation;
 
 }
