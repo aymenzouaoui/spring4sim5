@@ -33,6 +33,7 @@ public class BlocService implements iBlocService{
 
       return (List<Bloc>)blocRepository.findAll() ;
     }
+    /*
   public List<Bloc> getBlocsWithEtudiantsByReservationId(Long reservationId) {
     return blocRepository.findByChambreReservationsId(reservationId);
   }
@@ -40,5 +41,5 @@ public class BlocService implements iBlocService{
   public List<Bloc> getBlocsWithCapaciteInf100AndFoyerNomBeta(Long capaciteMax,String nomFoyer ) {
 
     return blocRepository.findByNomblocLessThanAndFoyerNomFoyer(capaciteMax, nomFoyer);
-  }
+  }*/
 }

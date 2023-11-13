@@ -39,12 +39,15 @@ public class ChambreServcie implements iChmabreService {
 
     @Override
     public List<Chambre> getAllChambres() {
+
         return (List<Chambre>) chambreRepository.findAll();
     }
-    public List<Chambre> getChambresWithValidReservations() {
+
+    public List<Chambre> getChambresWithValidReservations(
+
+    ) {
         return chambreRepository.findByReservationsEstvalideTrue();
+
     }
-    public List<Chambre> getChambresReservedByEtudiantAndOrderedByDate(Long etudiantId) {
-        return chambreRepository.findByReservationsEtudiantIdOrderByReservationsDate(etudiantId);
-    }
+
 }

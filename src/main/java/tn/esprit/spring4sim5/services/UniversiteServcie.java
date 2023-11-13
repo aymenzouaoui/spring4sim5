@@ -41,9 +41,9 @@ public class UniversiteServcie implements iUnversiteService{
     public List<Universite> getToutesLesUniversites() {
         return (List<Universite>) universiteRepository.findAll();
     }
-
+/*
     public String getNomFoyerUniversiteId5( Long universiteId) {
 
         return universiteRepository.findFoyerNomFoyerById(universiteId);
-    }
+    }*/
 }

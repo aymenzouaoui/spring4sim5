@@ -1,9 +1,12 @@
 package tn.esprit.spring4sim5.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.spring4sim5.entiies.Chambre;
 import tn.esprit.spring4sim5.entiies.Etudiant;
+import tn.esprit.spring4sim5.entiies.Reservation;
 
 import java.util.List;
 
@@ -11,7 +14,9 @@ import java.util.List;
 public interface IChambreRepository   extends CrudRepository <Chambre, Long> {
 
     List<Chambre> findByReservationsEstvalideTrue();
-    List<Chambre> findByReservationsEtudiantIdOrderByReservationsDate(Long etudiantId);
+
+    Chambre findByReservationsContains(Reservation reservation);
+
 
 
 

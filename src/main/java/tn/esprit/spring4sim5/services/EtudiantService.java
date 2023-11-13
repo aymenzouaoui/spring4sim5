@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring4sim5.entiies.Etudiant;
+import tn.esprit.spring4sim5.entiies.Typechambre;
 import tn.esprit.spring4sim5.repositories.IBlocRepository;
 import tn.esprit.spring4sim5.repositories.IEtudiantRepository;
 
@@ -11,9 +12,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+
 public class EtudiantService implements iEtudiantService {
     @Autowired
     IEtudiantRepository etudiantRepository;
+
+
+
+
 
 
     @Override
@@ -42,9 +48,10 @@ public class EtudiantService implements iEtudiantService {
         return (List<Etudiant>)etudiantRepository.findAll();
     }
 
-
-    public List<Etudiant> getEtudiantsWithDoubleChambreReservation() {
-        String typeChambre = "DOUBLE";
-        return etudiantRepository.findByReservationChambreTypec(typeChambre);
+    @Override
+    public List<Etudiant> findListReservationByBlocID(Long idBloc) {
+        return null;
     }
+
+
 }

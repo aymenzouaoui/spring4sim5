@@ -42,6 +42,7 @@ public class ReservationService implements iReservationServie{
 
         return (List<Reservation>) reservationRepository.findAll();
     }
+    /*
     public List<Reservation> getReservationsWithNomMohamed(String nomEtudiant) {
 
         return reservationRepository.findByEtudiantNomE(nomEtudiant);
@@ -51,5 +52,7 @@ public class ReservationService implements iReservationServie{
 
 
         return reservationRepository.findByChambreNumchmbreGreaterThan(numeroChambre);
-    }
+    }*/
+
+
 }
