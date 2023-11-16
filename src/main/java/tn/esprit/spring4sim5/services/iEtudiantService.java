@@ -24,11 +24,7 @@ public interface iEtudiantService {
     List<Etudiant> getTousLesEtudiants();
   //  public  List<Etudiant> rechercheReservationChambreTypec(Typechambre T);
 
-    @Query("SELECT e FROM Etudiant e " +
-            "JOIN e.reservations r " +
-            "JOIN r.chambres c " +
-            "JOIN c.bloc b " +
-            "WHERE b.idbloc = :idBloc")
+    @Query()
     List<Etudiant> findListReservationByBlocID(@Param("idBloc") Long idBloc);
 
 }
