@@ -12,7 +12,7 @@ public interface iFoyerServcie {
     Foyer mettreAJourFoyer(Foyer foyer);
 
 
-    void supprimerFoyer(Long id);
+    Void supprimerFoyer(Long id);
 
 
     Foyer getFoyerParId(Long id);

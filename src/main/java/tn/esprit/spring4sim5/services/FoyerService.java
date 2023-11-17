@@ -26,9 +26,10 @@ public class FoyerService implements iFoyerServcie{
     }
 
     @Override
-    public void supprimerFoyer(Long id) {
+    public Void supprimerFoyer(Long id) {
         foyerRepository.deleteById(id);
 
+        return null;
     }
 
     @Override

@@ -42,7 +42,6 @@ private  final iEtudiantService   etudiantServices ;
             existingEtudiant.setCin(updatedEtudiant.getCin());
             existingEtudiant.setEcole(updatedEtudiant.getEcole());
             existingEtudiant.setDate(updatedEtudiant.getDate());
-
             // Enregistrez l'étudiant mis à jour
             return etudiantServices.mettreAJourEtudiant(existingEtudiant);
         } else {

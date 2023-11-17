@@ -1,12 +1,16 @@
 package tn.esprit.spring4sim5.entiies;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 @Entity
 @Table
+
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
+@Getter
+@Setter
 public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
