@@ -2,7 +2,6 @@ package tn.esprit.tpfoyer.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Etudiant;
 import tn.esprit.tpfoyer.service.iEtudiantServices;
@@ -54,14 +53,6 @@ public class EtudiantRestController {
             etudiantServices.supprimerEtudiant(idEtudiant);
         } else {
             log.warn("N'existe pas");
-        }
-    }
-    @Scheduled(cron = "*/30 * * * * *")
-    public void afficherListeEtudiant() {
-        System.out.println("Liste des étudiants :");
-        List<Etudiant> etudiants = etudiantServices.getAllEtudiant();
-        for (Etudiant etudiant : etudiants) {
-            System.out.println(etudiant);
         }
     }
 }

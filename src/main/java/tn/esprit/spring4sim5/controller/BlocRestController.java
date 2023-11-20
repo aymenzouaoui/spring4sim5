@@ -2,7 +2,6 @@ package tn.esprit.tpfoyer.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.service.iBlocServices;
@@ -61,15 +60,5 @@ public class BlocRestController {
     @PutMapping("/affecterBlocFoyer/{idBloc}/{idFoyer}")
     public Bloc affecterBlocAFoyer(@PathVariable Long idBloc, @PathVariable Long idFoyer) {
         return blocServices.affecterBlocAFoyer(idBloc, idFoyer);
-    }
-
-
-    @Scheduled(cron = "*/30 * * * * *")
-    public void afficherListeBlocs() {
-        System.out.println("Liste des blocs :");
-        List<Bloc> blocs = blocServices.getAllBloc();
-        for (Bloc bloc : blocs) {
-            System.out.println(bloc);
-        }
     }
 }

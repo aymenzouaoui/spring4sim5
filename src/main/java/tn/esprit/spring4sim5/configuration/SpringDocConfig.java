@@ -24,7 +24,7 @@ public class SpringDocConfig {
     public Contact contactAPI() {
         Contact contact = new Contact().name("Equipe ASII")
 
-                        .email("aymen.zouaoui@esprit.tn")
+                        .email("malek.zaidi@esprit.tn")
                 .url("https://www.linkedin.com/in/**********/");
         return contact;
     }
