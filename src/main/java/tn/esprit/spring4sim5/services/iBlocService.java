@@ -9,6 +9,6 @@ public interface iBlocService {
     void supprimerBloc (Long idBloc);
     Bloc getBloc (Long idBloc);
     Bloc modifierBloc(Bloc b);
-    List<Bloc> getAllBloc ();
+    List<Bloc> getAllBloc();
 
 }

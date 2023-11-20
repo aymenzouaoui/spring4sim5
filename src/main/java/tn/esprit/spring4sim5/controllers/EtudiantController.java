@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring4sim5.entiies.Bloc;
 import tn.esprit.spring4sim5.entiies.Etudiant;
 import tn.esprit.spring4sim5.services.iEtudiantService;
 
@@ -59,6 +61,13 @@ private  final iEtudiantService   etudiantServices ;
             log.warn("N'existe pas");
         }
     }
-
+    @Scheduled(cron = "*/30 * * * * *")
+    public void afficherListeEtudiant() {
+        System.out.println("Liste des étudiants :");
+        List<Etudiant> etudiants = etudiantServices.getTousLesEtudiants();
+        for (Etudiant etudiant : etudiants) {
+            System.out.println(etudiant);
+        }
+    }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IBlocRepository extends CrudRepository<Bloc,Long> {
 
-List<Bloc>findByFoyerIdfoyer(Long id);
+//List<Bloc>findByFoyerIdfoyer(Long id);
 /*
     List<Bloc> findByChambreReservationsId(Long reservationId);
     List<Bloc> findByNomblocLessThanAndFoyerNomFoyer(long capaciteMax, String nomFoyer);

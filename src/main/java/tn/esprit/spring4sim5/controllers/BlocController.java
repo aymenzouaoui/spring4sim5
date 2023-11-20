@@ -2,6 +2,7 @@ package tn.esprit.spring4sim5.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring4sim5.entiies.Bloc;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/blocs")
+@RequestMapping("blocs")
 public class BlocController {
 
     @Autowired
@@ -37,8 +38,11 @@ public class BlocController {
         return blocService.modifierBloc(bloc);
     }
 
-    @GetMapping("/all")
-    public List<Bloc> getAllBlocs() {
-        return blocService.getAllBloc();
-    }
+   // @Scheduled(fixedDelay = 30000)
+   @GetMapping("/allbloc")
+   public List<Bloc> getAllBloc() {
+       return blocService.getAllBloc();
+   }
+
+
 }

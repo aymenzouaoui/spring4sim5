@@ -1,5 +1,6 @@
 package tn.esprit.spring4sim5.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring4sim5.entiies.Bloc;
@@ -8,6 +9,7 @@ import tn.esprit.spring4sim5.repositories.IBlocRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BlocService implements iBlocService{
   IBlocRepository blocRepository;
     @Override
@@ -28,11 +30,12 @@ public class BlocService implements iBlocService{
         return blocRepository.save(b);
     }
 
-    @Override
-    public List<Bloc> getAllBloc() {
+  @Override
+  public List<Bloc> getAllBloc() {
+    return (List<Bloc>)blocRepository.findAll() ;
+  }
 
-      return (List<Bloc>)blocRepository.findAll() ;
-    }
+
     /*
   public List<Bloc> getBlocsWithEtudiantsByReservationId(Long reservationId) {
     return blocRepository.findByChambreReservationsId(reservationId);
