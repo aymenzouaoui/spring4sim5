@@ -1,7 +1,9 @@
 package tn.esprit.spring4sim5.controller;
 
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring4sim5.entity.Universite;
@@ -12,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("universite")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UniversiteRestController {
     private final iUniversiteServices universiteServices;
 

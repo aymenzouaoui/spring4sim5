@@ -1,6 +1,10 @@
 package tn.esprit.spring4sim5.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring4sim5.entity.Reservation;
@@ -10,11 +14,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @RequestMapping("reservation")
 public class ReservationRestController {
     private final iReservationServices reservationServices;
-
     @GetMapping("/allreservation")
+    @Operation(summary = "Récupère toutes les réservations", description = "Cette opération retourne la liste de toutes les réservations enregistrées dans la base de données.")
+    @Tag(name = "Réservations")
     public List<Reservation> getAllReservation() {
         return reservationServices.getAllReservation();
     }
@@ -35,11 +41,16 @@ public class ReservationRestController {
     }
 
     @PostMapping("/add/{idChambre}/{cin}")
+    @Operation(summary = "Ajouter une réservation", description = "Cette opération permet d'ajouter une nouvelle réservation dans la base de données.")
+    @Tag(name = "Réservations")
+
     public Reservation ajouterReservation(@PathVariable Long idChambre, @PathVariable Long cin) {
         return reservationServices.ajouterReservation(idChambre,cin);
     }
 
     @PutMapping("/annulerReservation/{cin}")
+    @Operation(summary = "Annuler une réservation", description = "Cette opération permet d'annuler une réservation existante dans la base de données.")
+    @Tag(name = "Réservations")
     public Reservation annulerReservation(@PathVariable Long cin) {
 
         return reservationServices.annulerReservation(cin);

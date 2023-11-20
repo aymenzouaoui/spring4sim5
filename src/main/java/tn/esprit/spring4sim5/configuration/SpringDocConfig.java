@@ -38,7 +38,7 @@ public class SpringDocConfig {
     public GroupedOpenApi UniversityPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only University Management API")
-                .pathsToMatch("/universites/**")
+                .pathsToMatch("/universite/**")
                 .pathsToExclude("**")
                 .build();
     }
@@ -46,7 +46,7 @@ public class SpringDocConfig {
     public GroupedOpenApi ReservationsPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only Reservations Management API")
-                .pathsToMatch("/reservations/**")
+                .pathsToMatch("/reservation/**")
                 .pathsToExclude("**")
                 .build();
     }
@@ -54,7 +54,7 @@ public class SpringDocConfig {
     public GroupedOpenApi FoyerPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only Foyer Management API")
-                .pathsToMatch("/foyers/**")
+                .pathsToMatch("/foyer/**")
                 .pathsToExclude("**")
                 .build();
     }
@@ -70,7 +70,7 @@ public class SpringDocConfig {
     public GroupedOpenApi ChambresPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only Chambres Management API")
-                .pathsToMatch("/chambres/**")
+                .pathsToMatch("/chambre/**")
                 .pathsToExclude("**")
                 .build();
     }
