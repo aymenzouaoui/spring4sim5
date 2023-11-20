@@ -1,9 +1,9 @@
-package tn.esprit.tpfoyer.repository;
+package tn.esprit.spring4sim5.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.entity.Reservation;
-import tn.esprit.tpfoyer.entity.TypeChambre;
+import tn.esprit.spring4sim5.entity.Chambre;
+import tn.esprit.spring4sim5.entity.Reservation;
+import tn.esprit.spring4sim5.entity.TypeChambre;
 
 import java.util.List;
 

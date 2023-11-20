@@ -1,4 +1,4 @@
-package tn.esprit.tpfoyer;
+package tn.esprit.spring4sim5;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

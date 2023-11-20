@@ -1,6 +1,6 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
-import tn.esprit.tpfoyer.entity.Bloc;
+import tn.esprit.spring4sim5.entity.Bloc;
 
 import java.util.List;
 

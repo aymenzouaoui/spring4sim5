@@ -1,10 +1,10 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.entity.TypeChambre;
-import tn.esprit.tpfoyer.repository.iChambreRepository;
+import tn.esprit.spring4sim5.entity.Chambre;
+import tn.esprit.spring4sim5.entity.TypeChambre;
+import tn.esprit.spring4sim5.repository.iChambreRepository;
 import java.util.List;
 
 @RequiredArgsConstructor

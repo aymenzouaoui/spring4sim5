@@ -1,15 +1,15 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.entity.Etudiant;
-import tn.esprit.tpfoyer.entity.Reservation;
-import tn.esprit.tpfoyer.entity.TypeChambre;
-import tn.esprit.tpfoyer.repository.iChambreRepository;
-import tn.esprit.tpfoyer.repository.iEtudiantRepository;
-import tn.esprit.tpfoyer.repository.iReservationRepository;
+import tn.esprit.spring4sim5.entity.Chambre;
+import tn.esprit.spring4sim5.entity.Etudiant;
+import tn.esprit.spring4sim5.entity.Reservation;
+import tn.esprit.spring4sim5.entity.TypeChambre;
+import tn.esprit.spring4sim5.repository.iChambreRepository;
+import tn.esprit.spring4sim5.repository.iEtudiantRepository;
+import tn.esprit.spring4sim5.repository.iReservationRepository;
 
 import java.time.LocalDate;
 import java.util.HashSet;

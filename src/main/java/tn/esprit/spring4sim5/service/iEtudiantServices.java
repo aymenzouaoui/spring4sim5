@@ -1,6 +1,6 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
-import tn.esprit.tpfoyer.entity.Etudiant;
+import tn.esprit.spring4sim5.entity.Etudiant;
 
 import java.util.List;
 

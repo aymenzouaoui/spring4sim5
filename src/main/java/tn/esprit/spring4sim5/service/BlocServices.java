@@ -1,14 +1,14 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.tpfoyer.entity.Bloc;
-import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.entity.Foyer;
-import tn.esprit.tpfoyer.repository.iBlocRepository;
-import tn.esprit.tpfoyer.repository.iChambreRepository;
-import tn.esprit.tpfoyer.repository.iFoyerRepository;
+import tn.esprit.spring4sim5.entity.Bloc;
+import tn.esprit.spring4sim5.entity.Chambre;
+import tn.esprit.spring4sim5.entity.Foyer;
+import tn.esprit.spring4sim5.repository.iBlocRepository;
+import tn.esprit.spring4sim5.repository.iChambreRepository;
+import tn.esprit.spring4sim5.repository.iFoyerRepository;
 
 import java.util.List;
 

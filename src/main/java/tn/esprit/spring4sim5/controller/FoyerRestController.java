@@ -1,10 +1,10 @@
-package tn.esprit.tpfoyer.controller;
+package tn.esprit.spring4sim5.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.tpfoyer.entity.Foyer;
-import tn.esprit.tpfoyer.service.iFoyerServices;
+import tn.esprit.spring4sim5.entity.Foyer;
+import tn.esprit.spring4sim5.service.iFoyerServices;
 import java.util.List;
 
 @Slf4j

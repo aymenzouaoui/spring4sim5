@@ -1,7 +1,7 @@
-package tn.esprit.tpfoyer.repository;
+package tn.esprit.spring4sim5.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import tn.esprit.tpfoyer.entity.Reservation;
+import tn.esprit.spring4sim5.entity.Reservation;
 
 public interface iReservationRepository extends CrudRepository<Reservation, String> {
 }

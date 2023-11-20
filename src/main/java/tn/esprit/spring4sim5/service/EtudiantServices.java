@@ -1,9 +1,9 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.tpfoyer.entity.Etudiant;
-import tn.esprit.tpfoyer.repository.iEtudiantRepository;
+import tn.esprit.spring4sim5.entity.Etudiant;
+import tn.esprit.spring4sim5.repository.iEtudiantRepository;
 
 import java.util.List;
 

@@ -1,12 +1,10 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.tpfoyer.entity.Foyer;
-import tn.esprit.tpfoyer.entity.Universite;
+import tn.esprit.spring4sim5.entity.Foyer;
+import tn.esprit.spring4sim5.entity.Universite;
 
 import java.util.List;
 

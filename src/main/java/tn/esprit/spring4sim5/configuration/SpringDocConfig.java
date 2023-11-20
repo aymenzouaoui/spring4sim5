@@ -1,4 +1,4 @@
-package tn.esprit.tpfoyer.configuration;
+package tn.esprit.spring4sim5.configuration;
 
 
 import io.swagger.v3.oas.models.OpenAPI;

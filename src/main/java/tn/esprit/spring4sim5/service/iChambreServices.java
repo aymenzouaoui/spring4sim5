@@ -1,7 +1,7 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
-import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.entity.TypeChambre;
+import tn.esprit.spring4sim5.entity.Chambre;
+import tn.esprit.spring4sim5.entity.TypeChambre;
 
 import java.util.List;
 

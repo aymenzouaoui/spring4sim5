@@ -1,9 +1,9 @@
-package tn.esprit.tpfoyer.repository;
+package tn.esprit.spring4sim5.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import tn.esprit.tpfoyer.entity.Universite;
+import tn.esprit.spring4sim5.entity.Universite;
 
 public interface iUniversiteRepository extends CrudRepository <Universite, Long>
 {

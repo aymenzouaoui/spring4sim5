@@ -1,7 +1,6 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
-import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.tpfoyer.entity.Reservation;
+import tn.esprit.spring4sim5.entity.Reservation;
 
 import java.util.List;
 

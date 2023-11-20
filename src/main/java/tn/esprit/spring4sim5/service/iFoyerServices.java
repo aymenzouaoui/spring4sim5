@@ -1,7 +1,7 @@
-package tn.esprit.tpfoyer.service;
+package tn.esprit.spring4sim5.service;
 
 import jakarta.transaction.Transactional;
-import tn.esprit.tpfoyer.entity.Foyer;
+import tn.esprit.spring4sim5.entity.Foyer;
 
 import java.util.List;
 
