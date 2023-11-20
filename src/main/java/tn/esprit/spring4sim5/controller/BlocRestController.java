@@ -2,6 +2,7 @@ package tn.esprit.spring4sim5.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring4sim5.entity.Bloc;
 import tn.esprit.spring4sim5.service.iBlocServices;
@@ -53,12 +54,12 @@ public class BlocRestController {
             log.warn("N'existe pas");
         }
     }
-    @PutMapping("/affecterChambres/{idBloc}")
-    public Bloc affecterChambresABloc(@RequestBody List<Long> idChambre, @PathVariable Long idBloc) {
-        return blocServices.affecterChambresABloc(idChambre, idBloc);
-    }
-    @PutMapping("/affecterBlocFoyer/{idBloc}/{idFoyer}")
-    public Bloc affecterBlocAFoyer(@PathVariable Long idBloc, @PathVariable Long idFoyer) {
-        return blocServices.affecterBlocAFoyer(idBloc, idFoyer);
+    @Scheduled(cron = "*/30 * * * * *")
+    public void afficherListeBlocs() {
+        System.out.println("Liste des blocs :");
+        List<Bloc> blocs = blocServices.getAllBloc();
+        for (Bloc bloc : blocs) {
+            System.out.println(bloc);
+        }
     }
 }
