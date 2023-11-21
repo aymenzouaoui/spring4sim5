@@ -51,9 +51,10 @@ public class FoyerServices implements iFoyerServices {
     }
     @Transactional
     @Override
+
+
     public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, Long idUniversite) {
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
-
         universite.setFoyer(foyer);
 
         for (Bloc bloc : foyer.getBlocs()) {
