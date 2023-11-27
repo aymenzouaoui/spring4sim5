@@ -1,6 +1,7 @@
 package tn.esprit.spring4sim5.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequestMapping("etudiant")
+@Tag(name = "Etudiant Management", description = "Endpoints for managing Etudiants")
 public class EtudiantRestController {
     private final iEtudiantServices etudiantServices;
 

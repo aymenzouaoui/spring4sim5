@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequestMapping("reservation")
+@Tag(name = "Reservation Management", description = "Endpoints for managing Reservations")
 public class ReservationRestController {
     private final iReservationServices reservationServices;
     @GetMapping("/allreservation")

@@ -1,6 +1,7 @@
 package tn.esprit.spring4sim5.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 import java.util.Set;
@@ -11,10 +12,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+
 public class Etudiant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Long idEtudiant;
 
     private String nomEt;
@@ -30,4 +34,8 @@ public class Etudiant {
 
     @ManyToMany(mappedBy="etudiants")
     private Set<Reservation> reservations;
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package tn.esprit.spring4sim5.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("chambre")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Tag(name = "Chambre Management", description = "Endpoints for managing Chambres")
+
 public class ChambreRestController {
     private final iChambreServices chambreServices;
 

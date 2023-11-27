@@ -1,6 +1,7 @@
 package tn.esprit.spring4sim5.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("foyer")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Tag(name = "Foyer Management", description = "Endpoints for managing Foyers")
 public class FoyerRestController {
     private final iFoyerServices foyerServices;
 

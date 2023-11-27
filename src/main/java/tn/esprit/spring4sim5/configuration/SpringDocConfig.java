@@ -62,7 +62,7 @@ public class SpringDocConfig {
     public GroupedOpenApi BlocsPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only Blocs Management API")
-                .pathsToMatch("/blocs/**")
+                .pathsToMatch("/bloc/**")
                 .pathsToExclude("**")
                 .build();
     }
