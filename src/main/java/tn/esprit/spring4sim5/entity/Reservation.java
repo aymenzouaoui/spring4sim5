@@ -1,9 +1,9 @@
 package tn.esprit.spring4sim5.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,14 +16,14 @@ import java.util.Set;
 public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) // or other appropriate strategy
-
-    private String id_reservation;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+    private String idReservation;
 
 
     String numReservation;
 
-    Date anneUniversitaire;
+  Date anneUniversitaire;
 
     boolean estValide;
 

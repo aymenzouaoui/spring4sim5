@@ -11,6 +11,8 @@ import tn.esprit.spring4sim5.repository.iEtudiantRepository;
 import tn.esprit.spring4sim5.repository.iReservationRepository;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,56 +48,55 @@ public class ReservationServices implements iReservationServices{
 
     @Transactional
     @Override
-    public Reservation ajouterReservation (Long idBloc, Long cin)  {
+    public Reservation ajouterReservation(Long idBloc, Long cin) {
 
+        Bloc bloc = blocRepository.findById(idBloc)
+                .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID : " + idBloc));
 
-
-            Bloc bloc = blocRepository.findById(idBloc)
-                    .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID : " + idBloc));
-
-            Etudiant etudiant = etudiantRepository.findEtudiantByCin(cin);
-            if (etudiant == null) {
-                throw new RuntimeException("Etudiant non trouvé avec le CIN : " + cin);
-            }
-
-            // Recherche de la chambre associée au bloc
-            Chambre chambre = bloc.getChambres().stream().findFirst()
-                    .orElseThrow(() -> new RuntimeException("Aucune chambre associée au bloc : " + idBloc));
-        log.info("Service test");
-            // Création de la réservation
-            Reservation reservation = new Reservation();
-            reservation.setNumReservation(chambre.getNumeroChambre() + "-"  + "-" + cin);
-            reservation.setEstValide(true);
-
-            // Déterminer la capacité maximale en fonction du type de chambre
-        int capaciteMax = 0;
-        if (TypeChambre.SIMPLE.equals(chambre.getTypeC())) {
-            capaciteMax = 1;
-        } else if (TypeChambre.DOUBLE.equals(chambre.getTypeC())) {
-            capaciteMax = 2;
-        } else if (TypeChambre.TRIPLE.equals(chambre.getTypeC())) {
-            capaciteMax = 3;
+        Etudiant etudiant = etudiantRepository.findEtudiantByCin(cin);
+        if (etudiant == null) {
+            throw new RuntimeException("Etudiant non trouvé avec le CIN : " + cin);
         }
-            // Vérifier si la capacité maximale de la chambre est atteinte
-            long nombreReservations = chambre.getReservations().size();
-            if (nombreReservations >= capaciteMax) {
-                throw new IllegalStateException("La capacité maximale de la chambre est atteinte.");
-            }
 
-            // Gérer la relation ManyToMany
-            Set<Etudiant> etudiants = new HashSet<>();
-            etudiants.add(etudiant);
-            reservation.setEtudiants(etudiants);
+        // Recherche de la chambre disponible au bloc
+        Chambre chambre = findAvailableRoom(bloc);
 
-            // Ajouter la réservation à la chambre avant de la sauvegarder
-            chambre.getReservations().add(reservation);
+        if (chambre == null) {
+            throw new RuntimeException("Aucune chambre disponible au bloc : " + idBloc);
+        }
 
-            // Sauvegarder la réservation et mettre à jour la chambre
-            Reservation savedReservation = reservationRepository.save(reservation);
-            blocRepository.save(bloc);
+        log.info("Service test");
 
-            return savedReservation;
+        // Création de la réservation
+        Reservation reservation = new Reservation();
+        reservation.setNumReservation(chambre.getNumeroChambre() + "-" +
+                chambre.getBloc().getNomBloc().replace(" ", "") + "-" + cin);
+        reservation.setAnneUniversitaire(Date.from(LocalDate.of(LocalDate.now().getYear(), 9, 1)
+                .atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        reservation.setEstValide(true);
 
+        // Déterminer la capacité maximale en fonction du type de chambre
+        int capaciteMax = getCapaciteMax(chambre);
+
+        // Vérifier si la capacité maximale de la chambre est atteinte
+        long nombreReservations = chambre.getReservations().size();
+        if (nombreReservations >= capaciteMax) {
+            throw new RuntimeException("La capacité maximale de la chambre est atteinte.");
+        }
+
+        // Gérer la relation ManyToMany
+        Set<Etudiant> etudiants = new HashSet<>();
+        etudiants.add(etudiant);
+        reservation.setEtudiants(etudiants);
+
+        // Ajouter la réservation à la chambre avant de la sauvegarder
+        chambre.getReservations().add(reservation);
+
+        // Sauvegarder la réservation et mettre à jour la chambre
+        Reservation savedReservation = reservationRepository.save(reservation);
+        blocRepository.save(bloc);
+
+        return savedReservation;
     }
 
     @Override
@@ -125,6 +126,37 @@ public class ReservationServices implements iReservationServices{
 
         // Sauvegarder les modifications
         return reservationRepository.save(reservation);
+    }
+
+
+    private boolean isRoomAvailable(Chambre chambre) {
+        // Vérifier si la capacité maximale de la chambre est atteinte
+        int capaciteMax = getCapaciteMax(chambre);
+        long nombreReservations = chambre.getReservations().size();
+        return nombreReservations < capaciteMax && (chambre.getReservations().isEmpty() ||
+                !chambre.getReservations().stream().allMatch(Reservation::isEstValide));
+    }
+
+
+    private int getCapaciteMax(Chambre chambre) {
+        // Déterminer la capacité maximale en fonction du type de chambre
+        if (TypeChambre.SIMPLE.equals(chambre.getTypeC())) {
+            return 1;
+        } else if (TypeChambre.DOUBLE.equals(chambre.getTypeC())) {
+            return 2;
+        } else if (TypeChambre.TRIPLE.equals(chambre.getTypeC())) {
+            return 3;
+        }
+        return 0;
+    }
+    private Chambre findAvailableRoom(Bloc bloc) {
+        // Iterate through the rooms to find an available room
+        for (Chambre chambre : bloc.getChambres()) {
+            if (isRoomAvailable(chambre)) {
+                return chambre;
+            }
+        }
+        return null;  // No available room found
     }
 }
 
