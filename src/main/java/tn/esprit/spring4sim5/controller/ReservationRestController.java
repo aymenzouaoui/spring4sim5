@@ -41,12 +41,13 @@ public class ReservationRestController {
         }
     }
 
-    @PostMapping("/add/{idChambre}/{cin}")
+    @PostMapping("/add/{idBloc}/{cin}")
     @Operation(summary = "Ajouter une réservation", description = "Cette opération permet d'ajouter une nouvelle réservation dans la base de données.")
     @Tag(name = "Réservations")
 
-    public Reservation ajouterReservation(@PathVariable Long idChambre, @PathVariable Long cin) {
-        return reservationServices.ajouterReservation(idChambre,cin);
+    public Reservation ajouterReservation(@PathVariable Long idBloc, @PathVariable Long cin) {
+        log.info("controller test");
+        return reservationServices.ajouterReservation(idBloc,cin);
     }
 
     @PutMapping("/annulerReservation/{cin}")

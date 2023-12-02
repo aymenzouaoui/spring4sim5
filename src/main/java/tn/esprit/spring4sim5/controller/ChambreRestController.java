@@ -6,12 +6,16 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring4sim5.entity.Bloc;
 import tn.esprit.spring4sim5.entity.Chambre;
 import tn.esprit.spring4sim5.entity.TypeChambre;
 import tn.esprit.spring4sim5.service.iChambreServices;
-
+import java.util.Map;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -81,5 +85,44 @@ public class ChambreRestController {
     public List<Chambre> getChambresParBlocEtType(@PathVariable Long idBloc, @PathVariable TypeChambre typeC) {
         return chambreServices.getChambresParBlocEtType(idBloc, typeC);
     }
+/*
+    @Operation(
+            summary = "Affecter des chambres à un bloc",
+            description = "Cette opération permet d'affecter des chambres à un bloc.",
+            tags = {"Chambres"}
+    )
+    @PutMapping("/affecterChambresABloc/{idBloc}")
+    public ResponseEntity<Bloc> affecterChambresABloc(@PathVariable Long idBloc, @RequestBody List<Long> numChambres) {
+        log.info("ID du Bloc : {}", idBloc);
+        log.info("Numéros de chambres : {}", numChambres);
+
+        try {
+            Bloc bloc = chambreServices.affecterChambresABloc(numChambres, idBloc);
+            return ResponseEntity.ok(bloc);
+        } catch (RuntimeException e) {
+            log.error("Erreur lors de l'affectation des chambres à un bloc : {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+*/
+@PutMapping("/affecterChambresABloc/{idBloc}")
+@Operation(summary = "Affecter des chambres à un bloc",
+        description = "Cette opération affecte des chambres à un bloc spécifié.")
+public ResponseEntity<Bloc> affecterChambresABloc(@PathVariable Long idBloc, @RequestBody List<Long> numChambres) {
+    try {
+        Bloc bloc = chambreServices.affecterChambresABloc(numChambres, idBloc);
+        return ResponseEntity.ok(bloc);
+    } catch (RuntimeException e) {
+        log.error("Erreur lors de l'affectation des chambres à un bloc : {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+}
+    @PostMapping("/getChambresByNumeros")
+    @Operation(summary = "Récupérer des chambres par liste de numéros", description = "Cette opération retourne une liste de chambres ayant des numéros donnés.")
+    public Set<Chambre> getChambresByNumeros(@RequestBody List<Long> numerosChambre) {
+        return chambreServices.getChambresByNumeros(numerosChambre);
+    }
+
 }
 

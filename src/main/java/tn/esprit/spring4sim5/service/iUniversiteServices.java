@@ -21,6 +21,5 @@ public interface iUniversiteServices {
     Universite desaffecterFoyerAUniversite(Long idUniversite);
 
 
-    @Transactional
-    Foyer ajouterFoyerEtAffecterUniv(Foyer f, Long idUniv);
+
 }

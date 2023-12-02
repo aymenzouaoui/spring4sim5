@@ -2,6 +2,7 @@ package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring4sim5.entity.Foyer;
@@ -20,6 +21,7 @@ public class UniversiteServices implements iUniversiteServices {
     final iUniversiteRepository UniversiteRepository;
     final iFoyerRepository foyerRepository;
     final iBlocRepository blocRepository;
+
 
     @Override
     public Universite ajouterUniversite(Universite u) {
@@ -48,28 +50,38 @@ public class UniversiteServices implements iUniversiteServices {
         return UniversiteRepository.save(u);
     }
 
-
-    public Universite findUniversiteByNom(String nomUniversite) {
-        return UniversiteRepository.findUniversiteByNom(nomUniversite);
-    }
-    @Transactional
     @Override
     public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
-        Foyer foyer = foyerRepository.findById(idFoyer).orElse(null);
-        Universite universite = UniversiteRepository.findUniversiteByNom(nomUniversite);
+        // Rechercher le foyer par son ID
+        Foyer foyer = foyerRepository.findById(idFoyer)
+                .orElseThrow(() -> new RuntimeException("Foyer non trouvé avec l'ID : " + idFoyer));
 
-        if (foyer != null && universite != null) {
-            universite.setFoyer(foyer);
-            UniversiteRepository.save(universite);
+        // Rechercher l'université par son nom
+        Universite universite = UniversiteRepository.findUniversiteByNom(nomUniversite);
+        if (universite == null) {
+            // Si l'université n'existe pas, vous pouvez créer une nouvelle instance
+            universite = new Universite();
+            universite.setNomUniversite(nomUniversite);
         }
+
+        // Affecter le foyer à l'université
+        universite.setFoyer(foyer);
+
+        // Enregistrer les modifications dans les repositories
+        UniversiteRepository.save(universite);
+
+        // Vous pouvez également mettre à jour le foyer si nécessaire
 
         return universite;
     }
 
-    @Override
-    public Foyer ajouterFoyerEtAffecterUniv(Foyer f, Long idUniv) {
-        return null;
+
+
+    public Universite findUniversiteByNom(String nomUniversite) {
+        return UniversiteRepository.findUniversiteByNom(nomUniversite);
     }
+
+
 
     @Transactional
     @Override
@@ -79,6 +91,7 @@ public class UniversiteServices implements iUniversiteServices {
         universite.setFoyer(null);
         return UniversiteRepository.save(universite);
     }
+
 
 
 }

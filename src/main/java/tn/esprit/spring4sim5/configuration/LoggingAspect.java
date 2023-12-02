@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 public class LoggingAspect {
 
-
+/*
 
     @Before("execution(* tn.esprit.spring4sim5.service.BlocServices.*.*(..))")
     public void logMethodEntry(JoinPoint joinPoint) {
@@ -48,5 +48,5 @@ public class LoggingAspect {
         System.out.println("Exiting method " + name);
         logger.info("Exiting method " + name);
     }
-
+*/
 }

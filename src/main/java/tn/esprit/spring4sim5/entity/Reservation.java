@@ -2,7 +2,9 @@ package tn.esprit.spring4sim5.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -11,19 +13,17 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Reservation {
+public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idReservation;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // or other appropriate strategy
+
+    private String id_reservation;
+
 
     String numReservation;
 
-    @Temporal(TemporalType.DATE)
-    LocalDate debutAnneeUniv;
-
-    @Temporal(TemporalType.DATE)
-    LocalDate finAnneeUniv;
+    Date anneUniversitaire;
 
     boolean estValide;
 

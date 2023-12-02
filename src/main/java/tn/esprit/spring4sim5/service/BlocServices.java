@@ -10,7 +10,9 @@ import tn.esprit.spring4sim5.repository.iBlocRepository;
 import tn.esprit.spring4sim5.repository.iChambreRepository;
 import tn.esprit.spring4sim5.repository.iFoyerRepository;
 
+import java.util.HashSet;
 import java.util.List;
+
 
 @RequiredArgsConstructor
 @Service

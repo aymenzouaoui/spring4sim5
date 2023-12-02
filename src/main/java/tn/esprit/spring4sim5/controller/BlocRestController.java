@@ -74,6 +74,8 @@ public class BlocRestController {
         }
     }
 
+
+
     @Scheduled(cron = "*/30 * * * * *")
     @Operation(
             summary = "Display list of blocs",

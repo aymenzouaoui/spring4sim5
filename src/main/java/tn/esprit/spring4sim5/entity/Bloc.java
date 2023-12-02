@@ -1,7 +1,10 @@
 package tn.esprit.spring4sim5.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Bloc {
+public class Bloc implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +25,7 @@ public class Bloc {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Foyer foyer;
-
+    @JsonIgnore
     @OneToMany(mappedBy="bloc")
-    private Set<Chambre> chambres;
+    private List<Chambre> chambres;
 }

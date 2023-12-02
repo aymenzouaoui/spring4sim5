@@ -1,12 +1,11 @@
 package tn.esprit.spring4sim5.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.spring4sim5.entity.Chambre;
-import tn.esprit.spring4sim5.entity.Etudiant;
-import tn.esprit.spring4sim5.entity.Reservation;
-import tn.esprit.spring4sim5.entity.TypeChambre;
+import tn.esprit.spring4sim5.entity.*;
+import tn.esprit.spring4sim5.repository.iBlocRepository;
 import tn.esprit.spring4sim5.repository.iChambreRepository;
 import tn.esprit.spring4sim5.repository.iEtudiantRepository;
 import tn.esprit.spring4sim5.repository.iReservationRepository;
@@ -18,10 +17,13 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
+
 public class ReservationServices implements iReservationServices{
    final iReservationRepository reservationRepository;
    final iChambreRepository chambreRepository;
    final iEtudiantRepository etudiantRepository;
+   final iBlocRepository blocRepository;
     @Override
     public Reservation modifierReservation(Reservation r) {
         return reservationRepository.save(r);
@@ -44,20 +46,28 @@ public class ReservationServices implements iReservationServices{
 
     @Transactional
     @Override
-    public Reservation ajouterReservation (Long idChambre, Long cin)  {
-        Chambre chambre = chambreRepository.findById(idChambre).orElse(null);
+    public Reservation ajouterReservation (Long idBloc, Long cin)  {
 
-        Etudiant etudiant = etudiantRepository.findEtudiantByCin(cin);
 
-        // Création de la réservation
-        Reservation reservation = new Reservation();
-        assert chambre != null;
-        reservation.setNumReservation(chambre.getNumeroChambre() +"-"+ chambre.getBloc().getNomBloc().replace(" ", "") +"-"+ cin);
-        reservation.setDebutAnneeUniv(LocalDate.of(LocalDate.now().getYear(), 9, 1));
-        reservation.setFinAnneeUniv(LocalDate.of(LocalDate.now().getYear() + 1, 6, 1));
-        reservation.setEstValide(true);
 
-        // Déterminer la capacité maximale en fonction du type de chambre
+            Bloc bloc = blocRepository.findById(idBloc)
+                    .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID : " + idBloc));
+
+            Etudiant etudiant = etudiantRepository.findEtudiantByCin(cin);
+            if (etudiant == null) {
+                throw new RuntimeException("Etudiant non trouvé avec le CIN : " + cin);
+            }
+
+            // Recherche de la chambre associée au bloc
+            Chambre chambre = bloc.getChambres().stream().findFirst()
+                    .orElseThrow(() -> new RuntimeException("Aucune chambre associée au bloc : " + idBloc));
+        log.info("Service test");
+            // Création de la réservation
+            Reservation reservation = new Reservation();
+            reservation.setNumReservation(chambre.getNumeroChambre() + "-"  + "-" + cin);
+            reservation.setEstValide(true);
+
+            // Déterminer la capacité maximale en fonction du type de chambre
         int capaciteMax = 0;
         if (TypeChambre.SIMPLE.equals(chambre.getTypeC())) {
             capaciteMax = 1;
@@ -66,26 +76,26 @@ public class ReservationServices implements iReservationServices{
         } else if (TypeChambre.TRIPLE.equals(chambre.getTypeC())) {
             capaciteMax = 3;
         }
+            // Vérifier si la capacité maximale de la chambre est atteinte
+            long nombreReservations = chambre.getReservations().size();
+            if (nombreReservations >= capaciteMax) {
+                throw new IllegalStateException("La capacité maximale de la chambre est atteinte.");
+            }
 
-        // Vérifier si la capacité maximale de la chambre est atteinte
-        long nombreReservations = chambre.getReservations().size();
-        if (nombreReservations >= capaciteMax) {
-            throw new IllegalStateException("La capacité maximale de la chambre est atteinte.");
-        }
+            // Gérer la relation ManyToMany
+            Set<Etudiant> etudiants = new HashSet<>();
+            etudiants.add(etudiant);
+            reservation.setEtudiants(etudiants);
 
-        // Gérer la relation ManyToMany
-        Set<Etudiant> etudiants = new HashSet<>();
-        etudiants.add(etudiant);
-        reservation.setEtudiants(etudiants);
+            // Ajouter la réservation à la chambre avant de la sauvegarder
+            chambre.getReservations().add(reservation);
 
-        // Sauvegarder la réservation
-        Reservation savedReservation = reservationRepository.save(reservation);
+            // Sauvegarder la réservation et mettre à jour la chambre
+            Reservation savedReservation = reservationRepository.save(reservation);
+            blocRepository.save(bloc);
 
-        // Ajouter la réservation à la collection de réservations de la chambre et sauvegarder
-        chambre.getReservations().add(savedReservation);
-        chambreRepository.save(chambre);
+            return savedReservation;
 
-        return savedReservation;
     }
 
     @Override
