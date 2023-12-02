@@ -20,4 +20,13 @@ public interface iChambreRepository extends CrudRepository<Chambre,Long> {
 
    Set<Chambre> findByNumeroChambreIn(List<Long> numerosChambre);
 
+
+    @Query("SELECT c FROM Chambre c WHERE c.bloc = :bloc AND " +
+            "SIZE(c.reservations) < :capaciteMax AND " +
+            "(c.reservations IS EMPTY OR " +
+            "NOT EXISTS (SELECT 1 FROM c.reservations r WHERE r.estValide = true))")
+    Chambre findAvailableRoom(@Param("bloc") Bloc bloc, @Param("capaciteMax") int capaciteMax);
+
+
+
 }

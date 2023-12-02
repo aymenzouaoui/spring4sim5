@@ -99,34 +99,6 @@ public class ReservationServices implements iReservationServices{
         return savedReservation;
     }
 
-    @Override
-    @Transactional
-    public Reservation annulerReservation(Long cinEtudiant) {
-        // Trouver l'étudiant et sa réservation
-        Etudiant etudiant = etudiantRepository.findEtudiantByCin(cinEtudiant);
-
-        // Supposition: chaque étudiant a au maximum une réservation valide
-        Reservation reservation = etudiant.getReservations().stream()
-                .filter(Reservation::isEstValide)
-                .findFirst()
-                .orElse(null);
-
-        // Mettre à jour l'état de la réservation
-        reservation.setEstValide(false);
-
-        // Désaffecter l'étudiant
-        reservation.getEtudiants().remove(etudiant);
-
-        // Désaffecter la chambre associée et mettre à jour sa capacité
-        Chambre chambreAssociee = chambreRepository.findByReservationsContains(reservation);
-        if (chambreAssociee != null) {
-            chambreAssociee.getReservations().remove(reservation);
-            chambreRepository.save(chambreAssociee); // Sauvegarder les changements dans la chambre
-        }
-
-        // Sauvegarder les modifications
-        return reservationRepository.save(reservation);
-    }
 
 
     private boolean isRoomAvailable(Chambre chambre) {
@@ -158,5 +130,41 @@ public class ReservationServices implements iReservationServices{
         }
         return null;  // No available room found
     }
+
+
+
+    @Override
+    @Transactional
+    public Reservation annulerReservation(Long cinEtudiant) {
+        // Trouver l'étudiant et sa réservation
+        Etudiant etudiant = etudiantRepository.findEtudiantByCin(cinEtudiant);
+
+        // Supposition: chaque étudiant a au maximum une réservation valide
+        Reservation reservation = etudiant.getReservations().stream()
+                .filter(Reservation::isEstValide)
+                .findFirst()
+                .orElse(null);
+
+        // Mettre à jour l'état de la réservation
+        reservation.setEstValide(false);
+
+        // Désaffecter l'étudiant
+        reservation.getEtudiants().remove(etudiant);
+
+        // Désaffecter la chambre associée et mettre à jour sa capacité
+        Chambre chambreAssociee = chambreRepository.findByReservationsContains(reservation);
+        if (chambreAssociee != null) {
+            chambreAssociee.getReservations().remove(reservation);
+            chambreRepository.save(chambreAssociee); // Sauvegarder les changements dans la chambre
+        }
+
+        // Sauvegarder les modifications
+        return reservationRepository.save(reservation);
+    }
+
+
+
+
+
 }
 
